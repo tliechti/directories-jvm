@@ -221,7 +221,7 @@ final class Util {
 
   private static String[] runWinCommands(int guidsLength, String[] dirs, String encodedCommand) throws IOException {
     // legacy powershell.exe seems to run faster than pwsh.exe so prefer it if available
-    String[] commands = { "powershell.exe", "pwsh.exe" };
+    String[] commands = { "pwsh.exe" };
     IOException firstException = null;
     for (String dir : dirs) {
       for (String command : commands) {
@@ -229,14 +229,14 @@ final class Util {
         if (commandFile.exists()) {
           try {
             String[] stdout;
-            // try to run using powershell V2 to bypass constrained language mode
+            // try to run using powershell V7 to bypass constrained language mode
             // note that this has been deprecated in new version of Windows
             // https://devblogs.microsoft.com/powershell/windows-powershell-2-0-deprecation/
             // for some set up, running this requires installation of extra dependency on Windows host
             stdout = runCommands(guidsLength, Charset.forName("UTF-8"),
                     commandFile.toString(),
                     "-version",
-                    "2",
+                    "7",
                     "-NoProfile",
                     "-EncodedCommand",
                     encodedCommand
