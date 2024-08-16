@@ -235,8 +235,6 @@ final class Util {
             // for some set up, running this requires installation of extra dependency on Windows host
             stdout = runCommands(guidsLength, Charset.forName("UTF-8"),
                     commandFile.toString(),
-                    "-version",
-                    "7",
                     "-NoProfile",
                     "-EncodedCommand",
                     encodedCommand
