@@ -220,7 +220,7 @@ final class Util {
   }
 
   private static String[] runWinCommands(int guidsLength, String[] dirs, String encodedCommand) throws IOException {
-    // legacy powershell.exe seems to run faster than pwsh.exe so prefer it if available
+    // do not use legacy powershell.exe as it messes up, only use pwsh.exe as standard shell
     String[] commands = { "pwsh.exe" };
     IOException firstException = null;
     for (String dir : dirs) {
